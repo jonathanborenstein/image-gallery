@@ -10,3 +10,4 @@ The program is running an in-memory H2 database, but to connect it to another da
 
 The images are set to be saved in a temporary directory, but this can be changed by going to the ImageGalleryApplication class and changing the Path to something else such as Paths.get("/home/mydirectory/images"). 
 
+An example can be found at https://image-demo.cfapps.io/ . Search for "jon" to see my current gallery.
