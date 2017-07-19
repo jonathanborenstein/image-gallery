@@ -1,0 +1,90 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"></meta>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
+<script src="/jquery-3.1.1.slim.min.js"></script>
+<script src="/tether.min.js"></script>
+<script src="/bootstrap.min.js"></script>
+<style>
+div.gallery {
+	margin: 15px;
+	float: left;
+	width: 250px;
+}
+
+div.gallery img {
+	width: 100%;
+	height: 25%;
+}
+</style>
+<link href="/bootstrap.min.css" rel="stylesheet"></link>
+<link href="/navbar-top-fixed.css" rel="stylesheet"></link>
+</head>
+<body>
+
+	<nav
+		class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+		<button class="navbar-toggler navbar-toggler-right" type="button"
+			data-toggle="collapse" data-target="#navbarCollapse"
+			aria-controls="navbarCollapse" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<a class="navbar-brand" href="/">My Photos</a>
+		<div class="collapse navbar-collapse" id="navbarCollapse">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link" href="/find">Find
+						Photos <span class="sr-only">(current)</span>
+				</a></li>
+				<li class="nav-item" sec:authorize="!isAuthenticated()"><a
+					class="nav-link" href="/login">Login</a></li>
+				<li class="nav-item" sec:authorize="isAuthenticated()"><a
+					class="nav-link" href="/logout">Logout</a></li>
+				<li class="nav-item" sec:authorize="!isAuthenticated()"><a
+					class="nav-link" href="/register">Register</a></li>
+
+			</ul>
+
+		</div>
+	</nav>
+
+	<form class="form-inline mt-2 mt-md-0" method="POST" action="/find">
+		<input class="form-control mr-sm-2" type="text" name="name"
+			placeholder="Search"></input>
+		<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+	</form>
+
+	<div>
+		<form method="POST" enctype="multipart/form-data" action="/">
+			<table>
+				<tr>
+					<td>File to upload:</td>
+					<td><input type="file" name="file" /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" value="Upload" /></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+
+	<div th:each="file : ${files}">
+		<div class="gallery">
+			<a target="_blank" th:href="${file}"> <img th:src="${file}"
+				height="200" />
+			</a>
+			<div>
+				<form action="/delete" method="POST">
+					<table>
+						<input type="text" th:value="*{file}" name="text" readonly="true" />
+						<td><input type="submit" value="Delete" /></td>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
