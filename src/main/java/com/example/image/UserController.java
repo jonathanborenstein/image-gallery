@@ -37,6 +37,12 @@ public class UserController {
 
 		return "redirect:/login";
 	}
+	
+	@GetMapping("/users")
+	public String listUsers(Model model){
+		model.addAttribute("users", siteUserRepository.findAll());
+		return "users";
+	}
 
 	@GetMapping("/login")
 	public String login() {

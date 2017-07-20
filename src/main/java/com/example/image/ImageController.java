@@ -99,7 +99,7 @@ public class ImageController {
 		return "findphoto";
 	}
 	
-	@PostMapping("/find")
+	@GetMapping("/search")
 	public String findPhotos(@RequestParam("name") String name, Model model)  {
 
 		SiteUser user;

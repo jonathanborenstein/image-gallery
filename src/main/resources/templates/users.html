@@ -22,7 +22,6 @@ div.gallery img {
 <link href="/navbar-top-fixed.css" rel="stylesheet"></link>
 </head>
 <body>
-
 	<nav
 		class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
 		<button class="navbar-toggler navbar-toggler-right" type="button"
@@ -50,36 +49,13 @@ div.gallery img {
 		</div>
 	</nav>
 
-	<div>
-		<form method="POST" enctype="multipart/form-data" action="/">
-			<table>
-				<tr>
-					<td>File to upload:</td>
-					<td><input type="file" name="file" /></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><input type="submit" value="Upload" /></td>
-				</tr>
-			</table>
-		</form>
-	</div>
+	<tr th:each="user : ${users}">
+		<h1 align="center">
+			<td><a th:href="@{search?name=__${user.name}__}"
+				th:text="${user.name} + '\'s photos'">1</a></td>
+		</h1>
+	</tr>
 
-	<div th:each="file : ${files}">
-		<div class="gallery">
-			<a target="_blank" th:href="${file}"> <img th:src="${file}"
-				height="200" />
-			</a>
-			<div>
-				<form action="/delete" method="POST">
-					<table>
-						<input type="text" th:value="*{file}" name="text" readonly="true" />
-						<td><input type="submit" value="Delete" /></td>
-					</table>
-				</form>
-			</div>
-		</div>
-	</div>
 
 </body>
 </html>

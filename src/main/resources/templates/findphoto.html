@@ -36,11 +36,12 @@ div.gallery img {
 				<li class="nav-item active"><a class="nav-link" href="/find">Find
 						Photos <span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item" sec:authorize="!isAuthenticated()"><a
+				<li class="nav-item active"><a class="nav-link" href="/users">Users</a></li>
+				<li class="nav-item active" sec:authorize="!isAuthenticated()"><a
 					class="nav-link" href="/login">Login</a></li>
-				<li class="nav-item" sec:authorize="isAuthenticated()"><a
+				<li class="nav-item active" sec:authorize="isAuthenticated()"><a
 					class="nav-link" href="/logout">Logout</a></li>
-				<li class="nav-item" sec:authorize="!isAuthenticated()"><a
+				<li class="nav-item active" sec:authorize="!isAuthenticated()"><a
 					class="nav-link" href="/register">Register</a></li>
 
 			</ul>
@@ -48,7 +49,7 @@ div.gallery img {
 		</div>
 	</nav>
 
-	<form class="form-inline mt-2 mt-md-0" method="POST" action="/find">
+	<form class="form-inline mt-2 mt-md-0" method="GET" action="/search">
 		<input class="form-control mr-sm-2" type="text" name="name"
 			placeholder="Search"></input>
 		<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
