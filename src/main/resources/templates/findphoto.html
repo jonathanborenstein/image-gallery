@@ -40,7 +40,7 @@ div.gallery img {
 				<li class="nav-item active" sec:authorize="!isAuthenticated()"><a
 					class="nav-link" href="/login">Login</a></li>
 				<li class="nav-item active" sec:authorize="isAuthenticated()"><a
-					class="nav-link" href="/logout">Logout</a></li>
+					class="nav-link" href="javascript:$('#logoutForm').submit();">Logout</a></li>
 				<li class="nav-item active" sec:authorize="!isAuthenticated()"><a
 					class="nav-link" href="/register">Register</a></li>
 
@@ -48,6 +48,13 @@ div.gallery img {
 
 		</div>
 	</nav>
+
+	<form id="logoutForm" method="post" action="/logout">
+
+		<input type="hidden" th:name="${_csrf.parameterName}"
+			th:value="${_csrf.token}" />
+
+	</form>
 
 	<form class="form-inline mt-2 mt-md-0" method="GET" action="/search">
 		<input class="form-control mr-sm-2" type="text" name="name"

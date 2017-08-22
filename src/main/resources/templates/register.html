@@ -39,12 +39,19 @@ div.gallery img {
 				<li class="nav-item active"><a class="nav-link" href="/users">Users</a></li>
 				<li class="nav-item active"><a class="nav-link" href="/login">Login</a></li>
 				<li class="nav-item active" sec:authorize="isAuthenticated()"><a
-					class="nav-link" href="/logout">Logout</a></li>
+					class="nav-link" href="javascript:$('#logoutForm').submit();">Logout</a></li>
 				<li class="nav-item active"><a class="nav-link" href="/register">Register</a></li>
 			</ul>
 
 		</div>
 	</nav>
+	
+	<form id="logoutForm" method="post" action="/logout">
+
+		<input type="hidden" th:name="${_csrf.parameterName}"
+			th:value="${_csrf.token}" />
+
+	</form>
 
 	<form th:action="@{/register}" th:object="${siteUserForm}"
 		method="post">
