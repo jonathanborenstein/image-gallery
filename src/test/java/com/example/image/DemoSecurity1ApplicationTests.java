@@ -1,4 +1,4 @@
-package com.example.demosecurity1;
+package com.example.image;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
