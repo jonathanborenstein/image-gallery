@@ -23,9 +23,16 @@ public class UserController {
 	}
 
 	@PostMapping("/register")
-	public String register(Model model, SiteUserForm siteUserForm, BindingResult result) {
-
-		SiteUser siteUser = new SiteUser(siteUserForm.getName(), new BCryptPasswordEncoder().encode(siteUserForm.getPassword()), true);
+	public String register(Model model, SiteUser siteUser, SiteUserForm siteUserForm, BindingResult result) {
+		
+		if (siteUserForm.getName().matches("^[a-zA-Z0-9]{3,}$")){
+			siteUser = new SiteUser(siteUserForm.getName().trim(), 
+					new BCryptPasswordEncoder().encode(siteUserForm.getPassword()), true);
+		}
+		else {
+			result.rejectValue("name", "username");
+			return "register";
+		}
 
 		try {
 			this.siteUserRepository.save(siteUser);
